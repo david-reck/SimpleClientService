@@ -51,12 +51,12 @@ namespace ClientService.API
                         IPAddress grpcAddress = IPAddress.Parse("127.0.0.2");
                         IPAddress httpAddress = IPAddress.Parse("127.0.0.2");
                         var ports = GetDefinedPorts(configuration);
-                        options.Listen(httpAddress /*IPAddress.Any*/, ports.httpPort, listenOptions =>
+                        options.Listen(/*httpAddress*/ IPAddress.Any, ports.httpPort, listenOptions =>
                         {
                             listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
                         });
 
-                        options.Listen(grpcAddress /*IPAddress.Any*/, ports.grpcPort, listenOptions =>
+                        options.Listen(/*grpcAddress*/ IPAddress.Any, ports.grpcPort, listenOptions =>
                         {
                             listenOptions.Protocols = HttpProtocols.Http2;
                         });

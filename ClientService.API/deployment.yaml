@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-service-deployment
+spec:
+  selector:
+    matchLabels:
+      app: client-service-pod
+  template:
+    metadata:
+      labels:
+        app: client-service-pod
+    spec:
+      containers:
+      - name: client-service-container
+        image: ipaspoccontreg.azurecr.io/clientserviceapi:dev
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-service
+spec:
+  selector:
+    app: client-service-pod
+  ports:
+  - port: 8080
+    targetPort: 8081
+  type: LoadBalancer

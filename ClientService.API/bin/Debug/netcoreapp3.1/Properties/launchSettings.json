@@ -25,6 +25,13 @@
       },
       "applicationUrl": "http://localhost:5000"
     },
+    "Azure Dev Spaces": {
+      "commandName": "AzureDevSpaces",
+      "launchBrowser": true,
+      "resourceGroup": "FHIR_Server",
+      "aksName": "iPASCluster",
+      "subscriptionId": "b4d734f0-f4af-4928-b7e8-e09aad01c59f"
+    },
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,

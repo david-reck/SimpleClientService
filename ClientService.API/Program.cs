@@ -93,8 +93,8 @@ namespace ClientService.API
             }
             private static (int httpPort, int grpcPort) GetDefinedPorts(IConfiguration config)
             {
-                var grpcPort = config.GetValue("GRPC_PORT", 5022);
-                var port = config.GetValue("PORT", 8081);
+                var grpcPort = config.GetValue("GRPC_PORT", 30001);
+                var port = config.GetValue("PORT", 30021);
                 return (port, grpcPort);
             }
         }

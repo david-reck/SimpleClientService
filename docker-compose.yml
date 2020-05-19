@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  clientservice.api:
+    image: ${DOCKER_REGISTRY-}clientserviceapi
+    hostname: clientservice.api
+    ports: 
+        - 30021:30021
+        - 30001:30001
+    networks:
+        - ipasnetwork
+    build:
+      context: .
+      dockerfile: ClientService.API/Dockerfile
+
+networks:
+    ipasnetwork:
+        external:
+            name: ipasnetwork

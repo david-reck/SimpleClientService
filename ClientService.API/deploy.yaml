@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clientapi-deployment
+spec:
+  selector:
+    matchLabels:
+      app: clientapi-pod
+  template:
+    metadata:
+      labels:
+        app: clientapi-pod
+    spec:
+      containers:
+      - name: clientapi-container
+        image: ipascr.azurecr.io/clientserviceapi:dev
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 30001
+        - containerPort: 30021
+        command: ["/bin/sh", "-ec", "while :; do echo '.'; sleep 5 ; done"]

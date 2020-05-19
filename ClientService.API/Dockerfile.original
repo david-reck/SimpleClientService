@@ -1,12 +1,15 @@
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
 WORKDIR /app
-EXPOSE 8081 5022
+EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /src
-COPY ["ClientService.API.csproj", "."]
-RUN dotnet restore "ClientService.API.csproj"
+COPY ["ClientService.API/ClientService.API.csproj", "ClientService.API/"]
+COPY ["ClientService.Data/ClientService.Data.csproj", "ClientService.Data/"]
+
+RUN dotnet restore "ClientService.API/ClientService.API.csproj"
 COPY . .
+WORKDIR "/src/ClientService.API"
 RUN dotnet build "ClientService.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
